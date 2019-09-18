@@ -31,14 +31,13 @@
 <script>
 import Tinymce from '@/components/Tinymce'
 import Sticky from '@/components/Sticky' // 粘性header组件
-import { fetchArticle } from '@/api/article'
+import { fetchArticle, updateArticle } from '@/api/article'
 import { searchUser } from '@/api/remote-search'
 
 const reportForm = {
   status: 'draft',
   report: '货物与图片不符',
   reply: '', // 文章内容
-  content_short: '',
   id: undefined,
   solved: false
 }
@@ -150,7 +149,7 @@ export default {
 
         // // set page title
         // this.setPageTitle()
-
+        this.postForm.id = id
         this.postForm.report = response.reason
       }).catch(err => {
         console.log(err)
@@ -170,11 +169,17 @@ export default {
       this.$refs.postForm.validate(valid => {
         if (valid) {
           this.loading = true
-          this.$notify({
-            title: '成功',
-            message: '发布文章成功',
-            type: 'success',
-            duration: 2000
+          updateArticle(this.postForm).then(response => {
+            this.$notify({
+              title: '成功',
+              message: '发布文章成功',
+              type: 'success',
+              duration: 2000
+            })
+          }
+          ).catch(err => {
+            console.log(err)
+            return false
           })
           // this.postForm.status = 'published'
           // this.loading = false
