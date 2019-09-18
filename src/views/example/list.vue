@@ -3,7 +3,7 @@
     <el-table v-loading="listLoading" :data="list" border fit highlight-current-row style="width: 100%">
       <el-table-column align="center" label="ID" width="80">
         <template slot-scope="scope">
-          <span>{{ scope.row.targetServiceId }}</span>
+          <span>{{ scope.row.id }}</span>
         </template>
       </el-table-column>
 
@@ -18,6 +18,11 @@
           <span>{{ scope.row.publishUserId }}</span>
         </template>
       </el-table-column>
+      <el-table-column width="120px" align="center" label="被投诉服务">
+        <template slot-scope="scope">
+          <span>{{ scope.row.targetServiceId }}</span>
+        </template>
+      </el-table-column>
 
       <!-- <el-table-column width="100px" label="Importance">
         <template slot-scope="scope">
@@ -25,13 +30,13 @@
         </template>
       </el-table-column> -->
 
-      <el-table-column class-name="status-col" label="状态" width="110">
+      <!-- <el-table-column class-name="status-col" label="状态" width="110">
         <template slot-scope="{row}">
           <el-tag :type="row.status | statusFilter">
             {{ row.status }}
           </el-tag>
         </template>
-      </el-table-column>
+      </el-table-column> -->
 
       <el-table-column min-width="300px" label="内容">
         <template slot-scope="{row}">

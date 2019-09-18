@@ -206,13 +206,13 @@ export const asyncRoutes = [
       //   name: 'CreateArticle',
       //   meta: { title: 'createArticle', icon: 'edit' }
       // },
-      // {
-      //   path: 'edit/:id(\\d+)',
-      //   component: () => import('@/views/example/edit'),
-      //   name: 'EditArticle',
-      //   meta: { title: 'editArticle', noCache: true, activeMenu: '/example/list' },
-      //   hidden: true
-      // },
+      {
+        path: 'edit/:id',
+        component: () => import('@/views/example/edit'),
+        name: 'EditArticle',
+        meta: { title: 'editArticle', noCache: true, activeMenu: '/example/list' },
+        hidden: true
+      },
       {
         path: 'list',
         component: () => import('@/views/example/list'),
